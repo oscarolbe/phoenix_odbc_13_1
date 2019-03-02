@@ -3,6 +3,7 @@ FROM ubuntu:16.04
 # install ubuntu packages
 RUN apt-get update -q \
  && apt-get install -y \
+    wget \
     git \
     curl \
     locales \
@@ -20,6 +21,10 @@ RUN apt-get update -q \
     libxml2-utils \
     default-jdk \
  && apt-get clean
+
+RUN wget http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.0g-2ubuntu4.3_amd64.deb \
+      && dpkg -i libssl1.1_1.1.0g-2ubuntu4.3_amd64.deb \
+      && rm libssl1.1_1.1.0g-2ubuntu4.3_amd64.deb
 
 # --- MSSQL ODBC INSTALL ---
 
